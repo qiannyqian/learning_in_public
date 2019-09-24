@@ -125,11 +125,59 @@ numbers.forEach(number => console.log(number));
 numbers.forEach((number, index) => console.log(index, number));
 
 //Joining arrays
-
+const numbers = [1,2,3];
 numbers.join(',');
 //Join method returns a string
 //returns 1,2,3
 
+const message = 'This is my first message';
+const parts = message.split(' ');
+const combined = parts.join('-');
+// returns This-is-my-first-message
+// Real world use case - convert string of article title into a URL slug
+
+//Sorting Arrays
+const numbers = [2,3,1];
+numbers.sort();
+//returns [1,2,3]
+
+numbers.reverse();
+//returns [3,2,1]
+
+const courses = [
+	{ id: 1, name : 'Node.js' },
+	{ id: 1, name : 'javascript' },
+];
+
+courses.sort(function(a,b) {
+	const nameA = a.name.toUpperCase();
+	const nameB = b.name.toUpperCase();
+
+	if ( nameA < nameB ) return -1;
+	if ( nameA > nameB ) return 1;
+	return 0;
+	//based on ASCII value
+
+})
+
+console.log(courses);
+//array of objects is now properly sorted, regardless of letter case in original courses object
+
+//Testing The Elements of an Array
+const numbers = [1, -1, 2, 3];
+
+//check if value is a positive number
+const atLeastOnePositive = numbers.every(function(value) {
+	return value >= 0;
+});
+
+//The some method will run the callback function on every element of the array
+//once it hits a number that is >= 0, it will then stop
+
+console.log(atLeastOnePositive);
+//returns false
+
+//Filtering An Array
 
 
 
