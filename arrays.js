@@ -178,6 +178,64 @@ console.log(atLeastOnePositive);
 //returns false
 
 //Filtering An Array
+const numbers = [1, -1, 2, 3];
+
+ //return positive values; elements will be added to new array;
+const filtered = numbers.filter(n => n >= 0);
+
+console.log(filtered);
+//returns [1, 2, 3]
+
+//Mapping An Array
+//add li tags to each element of array (mapping numbers to strings)
+const items = filtered.map(n => '<li>' + n + '</li>');
+
+//use join method to display as string, concatenate string within ul tags
+const html = '<ul>' + items.join(''); + '</ul>'
+
+//mapping to an object
+const itemss = filtered.map( n => ({ value: n })); //have to put object between parentheses as JS engine might think {} === code block, which in this case is not, we're just trying to return an object
+
+//filter and map methods are chainable, meaning you can call them one after another in a chain
+const items = numbers
+	.filter(n => n >= 0) // get only positive elements
+	.map(n => ({ value: n})) //map each element to an obj
+	.filter(obj => obj.value > 1) // get only objs with value > 1
+	.map(obj => obj.value); //map the objs values to new array
+
+//returns [2, 3]
+
+//Reducing An Array - reduce all elements of an array into 1 element
+
+const sum = numbers.reduce((accumulator, currentValue) => {
+	return accumulator + currentValue;
+}, 0);
+//reduce method has two parameters: a callback function and initial value for accumulator
+//how it works:
+//First, set accumulator to 0
+//then, add currentValue (first element of array) to accumulator
+// 0 + 1 = 1
+//accumulator is now set to 1
+//repeat for all elements of the array -> add currentValue (the next few elements in array) to accumulator (whose value changes everytime a value is added to it)
+//1 + -1 = 0
+//0 + 2 = 2
+//2 + 3 = 5
+
+const sum = numbers.reduce((accumulator, currentValue) => {
+	return accumulator + currentValue;
+});
+//if the accumulator is not initialised, it will take on the value of the first element of the array, and then continue running
+//1 + -1 = 0
+//0 + 2 = 2
+//2 + 3 = 5
+
+//code cleanup
+const sum = numbers.reduce(
+	(accumulator, currentValue) => accumulator + currentValue
+);
+
+console.log(sum);
+//returns 5
 
 
 
