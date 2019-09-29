@@ -152,7 +152,7 @@ let address ={
 
 //For...In
 function showAddress(address) {
-	for (let key in addresss)
+	for (let key in address)
 		console.log(key, address[key]);
 }
 
