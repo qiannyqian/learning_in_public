@@ -237,6 +237,139 @@ const sum = numbers.reduce(
 console.log(sum);
 //returns 5
 
+//Exercise - Array from Range
+//Create a function that when given two parameters, create an array that starts and ends with the elements taken from the parameters
+const numbers = arrayFromRange(1, 4);
+console.log(numbers);
+//should return [1, 2, 3, 4]
+
+function arrayFromRange(min, max) {
+	const output = [];
+	for (let i = min; i <= max; i++)
+			output.push(i);
+	return output;
+}
+
+//Exercise - Includes
+const numbers = [1, 2, 3, 4];
+
+function includes(array, searchElement) {
+	for (let element of array)
+		if (element === searchElement)
+			return true;
+	return false;
+}
+
+//Exercise - Except
+const numbers = [1, 2, 3, 4];
+
+const output = except(numbers, [1]);
+
+console.log(output);
+
+function except(array, excluded) {
+	const difference = [];
+	for (let element of array)
+		if (!excluded.includes(element)) 
+			difference.push(element);
+	return difference;
+}
+
+//Exercise - Moving an element
+const numbers = [1, 2, 3, 4];
+
+const output = move(numbers, 1, -2);
+
+console.log(output);
+
+function move(array, index, offset) {
+	const position = index  + offset;
+	if (position >= array.length || position < 0) {
+		console.error('Invalid offset');
+		return;
+	}
+
+	const result = [...array];
+	const element = result.splice(index, 1)[0];
+	result.splice(position, 0, element)
+	return result;
+}
+
+//Exercise - Count Occurences
+const numbers = [1, 2, 3, 4, 1];
+
+const count = countOccurences(numbers, 1);
+
+console.log(count);
+//should return 2
+
+function countOccurences(array, searchElement) {
+	let count = 0;
+
+	for (let element of array)
+		if (searchElement === element)
+			count += 1;
+	
+	return count;
+}
+
+//Reduce method
+function countOccurences(array, searchElement) {
+	return array.reduce((accumulator, current) => {
+		const occurence = (current === searchElement) ? 1 : 0;
+		return accumulator + occurence;
+	}, 0);
+}
+
+//Exercise - Get Max
+const numbers = [1, 2, 3, 4];
+
+const max = getMax(numbers);
+
+console.log(max);
+
+function getMax(array) {
+	if (array.length === 0) 
+		return undefined;
+	
+	let max = array[0];
+
+	for (let i = 1; i < array.length; i++)
+		if (array[i] > max)
+			max = array[i];
+	
+	return max;
+}
+
+//Reduce method
+function getMax(array) {
+	if (array.length === 0) 
+		return undefined;
+	
+	returnarray.reduce((accumulator, current) => {
+		if (current > accumulator) return current;
+		return accumulator;
+	});
+
+	//can be cleaned up as such:
+	//return array.reduct((a, b) => (a > b) ? a : b);
+}
+
+//Exercise - Movies
+const movies = [
+	{ title: 'Happy Feet', year: 2018, rating: 4.5 },
+	{ title: 'Happy Feet 2', year: 2018, rating: 4.7 },
+	{ title: 'Happy Feet 3', year: 2018, rating: 3 },
+	{ title: 'Happy Feet 4', year: 2020, rating: 4.5 },
+];
+
+const titles = movies
+	.filter(n => n.year === 2018 && n.rating >= 4)
+	.sort((a, b) =>  a.rating - b.rating)
+	.reverse()
+	.map(n => n.title)
+
+console.log(titles);
 
 
 
