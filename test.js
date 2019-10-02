@@ -1,17 +1,18 @@
 // write a function that takes in (array, searchElement), return the number of occurences of the searchElement
 // + BONUS: Use reduce
 
-const array = [1, 2, 3, 4, 5, 6, 6, 7];
+const arr = [1, 2, 3, 4, 5, 6, 6, 7];
 
-const countOccurences = (array, searchElement) => array.reduce((acc, cur) => cur === searchElement ? acc + 1 : acc, 0);
-	
-const numOf6 = countOccurences(array, 6);
+const countOccurences = (array, searchElement) =>
+  array.reduce((acc, cur) => (cur === searchElement ? acc + 1 : acc), 0);
+
+const numOf6 = countOccurences(arr, 6);
 console.log(numOf6);
 
-//Syntax explainer
+// Syntax explainer
 
 function helloWorld() {
-	console.log('hello world');
+  console.log('hello world');
 }
 
 helloWorld();
@@ -30,7 +31,33 @@ const newFunc = (array, func) => array.map(func);
 console.log(newFunc(newArray, getDouble)); // returns [2, 4, 6, 8, 10]
 
 const testArray = [
-	{value: 5}, {value: 10}, {value: 3}, {value: 9}, {value: 8}, {value: 1}, {value: 3}, {value: 12}, {value: 15}
+  {
+    value: 5,
+  },
+  {
+    value: 10,
+  },
+  {
+    value: 3,
+  },
+  {
+    value: 9,
+  },
+  {
+    value: 8,
+  },
+  {
+    value: 1,
+  },
+  {
+    value: 3,
+  },
+  {
+    value: 12,
+  },
+  {
+    value: 15,
+  },
 ];
 
 console.log(testArray);
@@ -49,20 +76,23 @@ console.log(testArray);
 }
 */
 
-const specialFunction = (array) => {
-	//sumofValues
-	const sumOfValues = array.reduce((acc, cur) => acc + cur.value, 0);
+const specialFunction = array => {
+  // sumofValues
+  const sumOfValues = array.reduce((acc, cur) => acc + cur.value, 0);
 
-	//multiplesof3
-	const multiplesOf3 = array.filter(i => i.value % 3 === 0).map(i => i.value);
+  // multiplesof3
+  const multiplesOf3 = array.filter(i => i.value % 3 === 0).map(i => i.value);
 
-	//final task
-	const finalResult = multiplesOf3.map(i => i * 2).reduce((acc, cur) => acc + cur);
+  // final task
+  const finalResult = multiplesOf3
+    .map(i => i * 2)
+    .reduce((acc, cur) => acc + cur);
 
-	return {
-		sumOfValues, multiplesOf3, finalResult
-	}
-
-}
+  return {
+    sumOfValues,
+    multiplesOf3,
+    finalResult,
+  };
+};
 
 console.log(specialFunction(testArray));
