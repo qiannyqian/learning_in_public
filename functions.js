@@ -174,3 +174,118 @@ function stop() {
 
 //when var is used to create  global variable, this global variable is then attched to the window object of the browser
 //should avoid adding stuff to the window Object
+
+//The This keyword in Javascript
+// this references the object that is executing the current function
+// method -> obj
+
+const video = {
+	title: 'a',
+	play() {
+		console.log(this);
+	}
+};
+
+video.stop = function() {
+	console.log(this);
+}
+
+video.stop();
+
+// function -> global (window, global)
+function playVideo() {
+	console.log(this);
+}
+
+playVideo();
+//returns global Window object
+
+// const video1 = {
+// 	title: 'video',
+// 	tags: ['funny', 'haha', 'sad'],
+// 	showTags() {
+// 		this.tags.forEach(function(tag) {
+// 			console.log(tag); //if you use this here, it will return the global obj, because the this here is within a regular function, and not a method (the method would be showTags, but this is a regular callback function inside the forEach)
+// 		});
+// 	}
+// };
+
+const video1 = {
+	title: 'video',
+	tags: ['funny', 'haha', 'sad'],
+	showTags() {
+		this.tags.forEach(function(tag) {
+			console.log(this.title, tag);  
+		}, this); //the this here references the showTag
+	}
+};
+
+video1.showTags();
+//returns video funny video haha video sad
+
+//Changing the value of "this"
+function playVideo() {
+	console.log(this);
+}
+
+playVideo();
+//returns global Window object
+playVideo.call({ name: 'Hello'}); //you can pass in multiple parameters using call
+//returns {name: "Hello"}
+playVideo.apply({ name: 'Hello'});//you can also do that with apply but the params have to be in an array
+//returns {name: "Hello"}
+playVideo.bind({name: 'hello'})(); //call the function right away
+//returns {name: "hello"}
+
+//Three ways to change this
+
+const video1 = {
+	title: 'a',
+	tags: ['a', 'b', 'c'],
+	showTags() {
+		const self = this
+		this.tags.forEach(function(tag) {
+			console.log(self.title, tag); //use the self constant to reference the method object
+		}); //the this here references the method object
+	}
+};
+
+video1.showTags();
+//returns a a a b a c
+
+const video2 = {
+	title: 'a',
+	tags: ['a', 'b', 'c'],
+	showTags() {
+		this.tags.forEach(function(tag) {
+			console.log(this.title, tag);
+		}.bind(this)); //the this here references the method object
+	}
+};
+
+video2.showTags();
+//returns a a a b a c
+
+//in ES6, can use arrow functions, which inherit from the containing function
+const video3 = {
+	title: 'a',
+	tags: ['a', 'b', 'c'],
+	showTags() {
+		//this here references the video3 object
+		this.tags.forEach(tag => {
+			console.log(this.title, tag); //the this here also references the video3 object as usage of the arrow function means that the this is inherited
+		});
+	}
+};
+
+video3.showTags();
+//returns a a a b a c
+
+//Exercise - Sum of Arguments
+function sum(...nums) {
+	if (nums.length === 1 && Array.isArray(items[0])) //if first element of items is an array
+		nums = [...nums[0]] //reset the items to a new array
+	return nums.reduce((a, b) => a + b );
+}
+
+//Exercise - Area of Circle
