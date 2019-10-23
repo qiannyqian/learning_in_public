@@ -1,65 +1,65 @@
-//Stacks in Javascript (FCC)
+// Stacks in Javascript (FCC)
 
-//functions: push, pop, peek, length
+// functions: push, pop, peek, length
 
-//Stack in JS using an array
-//Determining if a word is a palindrome or not
-var letters = [];
+// Stack in JS using an array
+// Determining if a word is a palindrome or not
+const letters = [];
 
-var word = "bob";
+const word = 'bob';
 
-var rword = "";
+let rword = '';
 
-//put letters of word into stack
-for (var i = 0; i < word.length; i++) {
-	letters.push(word[i]);
+// put letters of word into stack
+for (let i = 0; i < word.length; i++) {
+  letters.push(word[i]);
 }
 
-//pop off the stack in reverse order
-for (var i = 0; i < word.length; i++) {
-	rword += letters.pop();
+// pop off the stack in reverse order
+for (let i = 0; i < word.length; i++) {
+  rword += letters.pop();
 }
 
-if (rword === word ) {
-	console.log(word + " is a palindrome.");
+if (rword === word) {
+  console.log(`${word} is a palindrome.`);
 } else {
-	console.log(word + " is not a palindrome.");
+  console.log(`${word} is not a palindrome.`);
 }
 
-//Creates a stack
-var Stack = function() {
-	this.count = 0;
-	this.storage = {};
+// Creates a stack
+const Stack = function() {
+  this.count = 0;
+  this.storage = {};
 
-	//adds value to the end of the stack
-	this.push = function(value) {
-		this.storage[this.count] = value;
-		this.count++;
-	}
+  // adds value to the end of the stack
+  this.push = function(value) {
+    this.storage[this.count] = value;
+    this.count++;
+  };
 
-	//removes and returns the value at the end of a stack
-	this.pop = function() {
-		if (this.count === 0) {
-			return undefined;
-		}
+  // removes and returns the value at the end of a stack
+  this.pop = function() {
+    if (this.count === 0) {
+      return undefined;
+    }
 
-		this.count--;
-		var result = this.storage[this.count];
-		delete this.storage[this.count];
-		return result;
-	}
+    this.count--;
+    const result = this.storage[this.count];
+    delete this.storage[this.count];
+    return result;
+  };
 
-	this.size = function() {
-		return this.count;
-	}
+  this.size = function() {
+    return this.count;
+  };
 
-	//returns the value at the end of the stack
-	this.peek = function() {
-		return this.storage[this.count-1];
-	}
-}
+  // returns the value at the end of the stack
+  this.peek = function() {
+    return this.storage[this.count - 1];
+  };
+};
 
-var myStack = new Stack();
+const myStack = new Stack();
 
 myStack.push(1);
 myStack.push(2);
